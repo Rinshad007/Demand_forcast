@@ -1,13 +1,14 @@
 import streamlit as st
 
 def show_overview():
+    st.image("assets/logo.png", width=80)
 
-    st.title("📦 Inventory Demand Forecasting")
+    st.title("Inventory Demand Prediction")
 
     st.header("Project Overview")
 
     st.write("""
-Inventory Demand Forecasting is a Machine Learning project that predicts
+Inventory Demand Prediction is a Machine Learning project that predicts
 future product demand based on historical inventory and sales information.
 
 The model helps businesses:

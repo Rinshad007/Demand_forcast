@@ -33,6 +33,7 @@ def show_chart():
             category_df,
             x="Category",
             y="Demand",
+
             title="Average Demand by Category",
             color="Category"
         )

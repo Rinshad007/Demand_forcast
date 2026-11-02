@@ -2,13 +2,16 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-model = joblib.load("RandomForest.pkl")
-model_columns = joblib.load("rf_model_columns.pkl")
-metrics=joblib.load("metrics.pkl")
+model = joblib.load("model/RandomForest.pkl")
+model_columns = joblib.load("model/rf_model_columns.pkl")
+metrics=joblib.load("model/metrics.pkl")
 
 def show_prediction():
+    st.image("assets/logo.png", width=80)
 
-    st.title("📈 Inventory Demand Prediction")
+    st.title("Inventory Demand Prediction")
+
+    st.subheader('Inventory Details')
 
     col1,col2 = st.columns(2)
 

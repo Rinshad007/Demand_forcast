@@ -6,7 +6,7 @@ from chart import show_chart
 
 def show_dataset():
 
-    st.title("📂 Dataset Details")
+    st.title("Dataset Details")
 
     # Load dataset
     df = pd.read_csv("data/demand_forecasting.csv")
@@ -64,7 +64,7 @@ def show_dataset():
     
     st.subheader("Target Variable")
     
-    st.success("DemandS")
+    st.success("Demand")
 
     st.subheader("📊 CHARTS ")
     
