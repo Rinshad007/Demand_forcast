@@ -13,7 +13,7 @@ from utils.styles import load_css
 
 
 st.set_page_config(
-    page_title="Inventory Demand Forecasting",
+    page_title="Inventory Demand Prediction",
     page_icon="📦",
     layout="wide"
 )
@@ -29,7 +29,7 @@ with st.sidebar:
     st.image("assets/logo.png", width=80)
 
     st.markdown("# 📦 Inventory Demand")
-    st.markdown("### Forecasting Dashboard")
+    st.markdown("### Predicting Dashboard")
 
     st.divider()
 

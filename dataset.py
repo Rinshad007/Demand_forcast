@@ -29,6 +29,8 @@ def show_dataset():
     df = pd.DataFrame({
     
             "Feature":[
+                "Store ID",
+                "Product ID",
                 "Inventory Level",
                 "Units Ordered",
                 "Price",
@@ -43,6 +45,8 @@ def show_dataset():
             ],
     
             "Type":[
+                "Categorical",
+                "Categorical",
                 "Numeric",
                 "Numeric",
                 "Numeric",
