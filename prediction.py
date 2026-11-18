@@ -5,6 +5,7 @@ import joblib
 model = joblib.load("model/RandomForest1.pkl")
 model_columns = joblib.load("model/model_columns1.pkl")
 metrics=joblib.load("model/metrics1.pkl")
+scaler=joblib.load("model/scaler1.pkl")
 
 def show_prediction():
     st.image("assets/logo.png", width=80)
@@ -85,8 +86,8 @@ def show_prediction():
             columns=model_columns,
             fill_value=0
         )
-
-        prediction = model.predict(input_df)[0]
+        input_scaled=scaler.transform(input_df)
+        prediction = model.predict(input_scaled)[0]
 
         st.success(
             f"Predicted Demand : {prediction:.2f} Units"
