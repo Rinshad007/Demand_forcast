@@ -3,13 +3,16 @@ import streamlit as st
 def show_overview():
     st.image("assets/logo.png", width=80)
 
-    st.title("Inventory Demand Prediction")
+    st.title("StockWise")
 
     st.header("Project Overview")
 
     st.write("""
-Inventory Demand Prediction is a Machine Learning project that predicts
-future product demand based on historical inventory and sales information.
+StockWise is a machine learning-powered inventory demand forecasting application
+that predicts future product demand based on inventory, pricing, promotions,
+seasonality, and market conditions. It enables businesses to optimize inventory
+levels, reduce stock shortages, minimize excess inventory, and support
+data-driven decision-making.
 
 The model helps businesses:
 

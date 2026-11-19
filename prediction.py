@@ -10,7 +10,9 @@ scaler=joblib.load("model/scaler1.pkl")
 def show_prediction():
     st.image("assets/logo.png", width=80)
 
-    st.title("Inventory Demand Prediction")
+    st.title("StockWise")
+
+    st.markdown("### Predict Inventory Demand, Optimize Business Decisions")
 
     st.subheader('Inventory Details')
 
@@ -93,6 +95,105 @@ def show_prediction():
             f"Predicted Demand : {prediction:.2f} Units"
         )
 
+
+        available_stock = inventory + units
+        stock_balance = available_stock - prediction
+
+
+        coverage = (available_stock / prediction) * 100 if prediction > 0 else 0
+
+        st.subheader("📦 Inventory Decision Support")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.metric("Current Inventory", f"{inventory:.0f} Units")
+            st.metric("Incoming Units Ordered", f"{units:.0f} Units")
+
+        with col2:
+            st.metric("Available Stock", f"{available_stock:.0f} Units")
+            st.metric("Predicted Demand", f"{prediction:.0f} Units")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.metric("Stock Coverage", f"{coverage:.1f}%")
+
+        with col2:
+            st.metric("Stock Gap", f"{stock_balance:.0f} Units")
+
+
+        st.progress(min(coverage / 100, 1.0))
+        st.caption(f"Stock Coverage: {coverage:.1f}%")
+
+        st.divider()
+
+
+        if stock_balance >= 0:
+
+            if coverage >= 120:
+
+                st.success("🟢 Excellent Stock Level")
+
+                st.write(f"**Expected Remaining Stock:** {stock_balance:.0f} Units")
+
+                st.info("""
+        ### Recommendation
+
+        - Inventory level is excellent.
+        - No additional purchase order is required.
+        - Continue monitoring demand.
+        - Consider reducing future purchase quantities if this trend continues to avoid excess inventory.
+        """)
+
+            else:
+
+                st.success("🟢 Sufficient Stock")
+
+                st.write(f"**Expected Remaining Stock:** {stock_balance:.0f} Units")
+
+                st.info("""
+        ### Recommendation
+
+        - Current inventory is sufficient to satisfy the predicted demand.
+        - No immediate replenishment is required.
+        - Continue monitoring demand and supplier deliveries.
+        - Review inventory after the next sales cycle.
+        """)
+
+        else:
+
+            shortage = abs(stock_balance)
+
+            if coverage >= 90:
+
+                st.warning("🟡 Nearly Sufficient - Monitor Closely")
+
+                st.write(f"**Expected Shortage:** {shortage:.0f} Units")
+
+                st.warning(f"""
+        ### Recommendation
+
+        - Available stock is slightly below the predicted demand.
+        - Consider ordering **at least {shortage:.0f} additional units**.
+        - Monitor supplier deliveries carefully.
+        - Review inventory before the demand period begins.
+        """)
+
+            else:
+
+                st.error("🔴 High Risk of Stock-out")
+
+                st.write(f"**Expected Shortage:** {shortage:.0f} Units")
+
+                st.error(f"""
+        ### Recommendation
+
+        - Place an additional purchase order for **more units**.
+        - Contact suppliers immediately to ensure timely replenishment.
+        - Monitor inventory closely until new stock arrives.
+        - Consider increasing safety stock if high demand continues.
+        """)
 
         st.subheader("📊 Model Performance")
 

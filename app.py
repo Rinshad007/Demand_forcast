@@ -13,7 +13,7 @@ from utils.styles import load_css
 
 
 st.set_page_config(
-    page_title="Inventory Demand Prediction",
+    page_title=("StockWise"),
     page_icon="📦",
     layout="wide"
 )
@@ -22,13 +22,13 @@ st.set_page_config(
 st.markdown(load_css(), unsafe_allow_html=True)
 
 
-import streamlit as st
+
 
 with st.sidebar:
 
     st.image("assets/logo.png", width=80)
 
-    st.markdown("# 📦 Inventory Demand")
+    st.markdown("# 📦 StockWise ")
     st.markdown("### Predicting Dashboard")
 
     st.divider()
