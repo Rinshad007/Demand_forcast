@@ -3,6 +3,12 @@ import pandas as pd
 
 from chart import show_chart
 
+df = pd.read_csv("data/demand_forecasting.csv")
+
+df['Date']=pd.to_datetime(df['Date'])
+
+df['Month']=df['Date'].dt.month
+
 
 def show_dataset():
 

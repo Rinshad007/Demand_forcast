@@ -7,6 +7,8 @@ model_columns = joblib.load("model/model_columns1.pkl")
 metrics=joblib.load("model/metrics1.pkl")
 scaler=joblib.load("model/scaler1.pkl")
 
+
+
 def show_prediction():
     st.image("assets/logo.png", width=80)
 
@@ -14,7 +16,7 @@ def show_prediction():
 
     st.markdown("### Predict Inventory Demand, Optimize Business Decisions")
 
-    st.subheader('Inventory Details')
+    st.subheader('Inventory Details and Bussiness factors')
 
     col1,col2 = st.columns(2)
 
@@ -61,7 +63,9 @@ def show_prediction():
 
         promotion = st.selectbox("Promotion",[0,1])
 
-        date = st.date_input("Select date")
+        month = st.selectbox(
+            "month",
+            [1,2,3,4,5,6,7,8,9,10,11,12])
 
     if st.button("Predict Demand"):
 
@@ -74,7 +78,7 @@ def show_prediction():
             "Price":[price],
             "Discount":[discount],
             "Competitor Pricing":[competitor],
-            "Date":[date],
+            "Month":[month],
             "Category":[category],
             "Weather Condition":[weather],
             "Seasonality":[season],
